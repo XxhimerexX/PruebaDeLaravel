@@ -9,6 +9,7 @@
         "prod": "npm run production", 
         "production": "mix --production"
     },
+    "homepage": "https://apppruieba.herokuapp.com/",
     "devDependencies": {
         "@babel/preset-react": "^7.16.7",
         "@headlessui/react": "^1.4.2",

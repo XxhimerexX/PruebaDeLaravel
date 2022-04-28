@@ -1,11 +1,15 @@
-
 import Authenticated from '@/Layouts/Authenticated'
 import { InertiaLink, Head } from '@inertiajs/inertia-react'
 import Icon from '@/Layouts/Icon'
 import React from 'react'
+import Pagination from '@/Components/Pagination'
 
 const Index = (props) => {
-    const { users } = props
+    const { uu } = props
+    const {
+        data,
+        links 
+      } = uu;
     return (
         <Authenticated
             auth={props.auth}
@@ -34,7 +38,7 @@ const Index = (props) => {
                             </thead>
                             <tbody>
                                 {
-                                    users.map(({ id, p_nombre, s_nombre, p_apellido, s_apellido, email }) => (
+                                    data.map(({ id, p_nombre, s_nombre, p_apellido, s_apellido, email }) => (
                                         <tr key={id} className="hover:bg-gray-100 focus-within:bg-gray-100">
                                             <td className="border-t">
                                                 <InertiaLink
@@ -86,7 +90,8 @@ const Index = (props) => {
                             </tbody>
                         </table>
                     </div>
-                    {/* <Paginator links={}/> */}
+                    {/* <Paginator/> */}
+                    <Pagination links={links}/>
                 </div>
             </div>
 

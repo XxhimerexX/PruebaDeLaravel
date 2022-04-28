@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie', 'https://apppruieba.herokuapp.com/*'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', 'https://sheltered-tor-45132.herokuapp.com/*'],
 
     'allowed_methods' => ['*'],
 

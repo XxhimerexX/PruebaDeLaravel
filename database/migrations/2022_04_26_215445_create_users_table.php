@@ -27,7 +27,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('t_identificacion')->references('id')->on('tipo_documento');
+            // $table->foreign('t_identificacion')->references('id')->on('tipo_documento');
         });
     }
 

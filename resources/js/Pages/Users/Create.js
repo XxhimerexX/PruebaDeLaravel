@@ -1,6 +1,7 @@
 import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import Label from '@/Components/Label';
+import SelectInput from '@/Components/SelectInput';
 import ValidationErrors from '@/Components/ValidationErrors';
 import Authenticated from '@/Layouts/Authenticated'
 import { Head, useForm } from '@inertiajs/inertia-react'
@@ -41,21 +42,17 @@ const Create = (props) => {
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Crear Usuarios</h2>}
         >
             <Head title="Crear Usuarios" />
-            <ValidationErrors errors={errors}/>
+            {/* <ValidationErrors errors={errors}/> */}
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        AQUI DEBERIA IR EL FORMULARIO DE EDICION
                         <form onSubmit={submit}>
                             <div>
                                 <Label forInput="t_identificacion" value="Tipo de Documento" />
-                                <select
-                                    name="t_identificacion"
-                                    value={data.t_identificacion}
-                                    className="mt-1 block w-full"
-                                    autoComplete="t_identificacion"
-                                    onChange={onHandleChange}
-                                    required
+                                <SelectInput
+                                errors={errors.t_identificacion}
+                                value={data.t_identificacion}
+                                onChange={e => setData('t_identificacion', e.target.value)}
                                 >
                                     {
                                         tipos_documentos.map(({ id, tipo_documento }) => (
@@ -64,7 +61,7 @@ const Create = (props) => {
                                             </option>
                                         ))
                                     }
-                                </select>
+                                </SelectInput>
                             </div>
                             <div>
                                 <Label forInput="identificacion" value="Identificacion" />
@@ -77,6 +74,7 @@ const Create = (props) => {
                                     autoComplete="identificacion"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.identificacion}
                                     required
                                 />
                             </div>
@@ -91,6 +89,7 @@ const Create = (props) => {
                                     autoComplete="p_nombre"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.p_nombre}
                                     required
                                 />
                             </div>
@@ -104,6 +103,7 @@ const Create = (props) => {
                                     autoComplete="s_nombre"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.s_nombre}
                                     required
                                 />
                             </div>
@@ -117,6 +117,7 @@ const Create = (props) => {
                                     autoComplete="p_apellido"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.p_apellido}
                                     required
                                 />
                             </div>
@@ -130,6 +131,7 @@ const Create = (props) => {
                                     autoComplete="s_apellido"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.s_apellido}
                                     required
                                 />
                             </div>
@@ -143,6 +145,7 @@ const Create = (props) => {
                                     autoComplete="email"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.email}
                                     required
                                 />
                             </div>
@@ -156,6 +159,7 @@ const Create = (props) => {
                                     autoComplete="password"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.password}
                                     required
                                 />
                             </div>

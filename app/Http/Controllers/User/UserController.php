@@ -19,10 +19,9 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
         $user = User::paginate(10);
         
-        return Inertia::render('Users/Index', ['users' => $users, 'uu'=>$user]);
+        return Inertia::render('Users/Index', ['uu'=>$user]);
     }
 
     /**
@@ -55,7 +54,7 @@ class UserController extends Controller
             't_identificacion' => 'required',
             'identificacion' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required',
+            'password' => 'required|min:8|max:20',
         ]);
         $data = array(
             'p_nombre' => $request->input('p_nombre'),

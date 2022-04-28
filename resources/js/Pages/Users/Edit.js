@@ -10,6 +10,7 @@ import DeleteButton from '@/Components/DeleteButton';
 import { Inertia } from '@inertiajs/inertia';
 import Swal from 'sweetalert2';
 import ValidationErrors from '@/Components/ValidationErrors';
+import SelectInput from '@/Components/SelectInput';
 const Edit = (props) => {
     const { tipos_documentos } = props;
     const { flash } = props
@@ -50,16 +51,16 @@ const Edit = (props) => {
             cancelButtonColor: '#d33',
             cancelButtonText: 'cancelar',
             confirmButtonText: 'Si, eliminar!'
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed && !errors) {
-              Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-              )
-              Inertia.delete(route('destroy.user', users.id));
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+                Inertia.delete(route('destroy.user', users.id));
             }
-          })
+        })
     }
 
     return (
@@ -69,21 +70,17 @@ const Edit = (props) => {
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Editar Usuarios</h2>}
         >
             <Head title="Editar Usuarios" />
-            <ValidationErrors errors={errors} />
+            {/* <ValidationErrors errors={errors} /> */}
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        AQUI DEBERIA IR EL FORMULARIO DE EDICION
                         <form onSubmit={submit}>
                             <div>
                                 <Label forInput="t_identificacion" value="Tipo de Documento" />
-                                <select
-                                    name="t_identificacion"
+                                <SelectInput
+                                    errors={errors.t_identificacion}
                                     value={data.t_identificacion}
-                                    className="mt-1 block w-full"
-                                    autoComplete="t_identificacion"
-                                    onChange={onHandleChange}
-                                    required
+                                    onChange={e => setData('t_identificacion', e.target.value)}
                                 >
                                     {
                                         tipos_documentos.map(({ id, tipo_documento }) => (
@@ -92,7 +89,7 @@ const Edit = (props) => {
                                             </option>
                                         ))
                                     }
-                                </select>
+                                </SelectInput>
                             </div>
                             <div>
                                 <Label forInput="identificacion" value="Identificacion" />
@@ -105,6 +102,7 @@ const Edit = (props) => {
                                     autoComplete="identificacion"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.identificacion}
                                     required
                                 />
                             </div>
@@ -119,6 +117,7 @@ const Edit = (props) => {
                                     autoComplete="p_nombre"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.p_nombre}
                                     required
                                 />
                             </div>
@@ -132,6 +131,7 @@ const Edit = (props) => {
                                     autoComplete="s_nombre"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.s_nombre}
                                     required
                                 />
                             </div>
@@ -145,6 +145,7 @@ const Edit = (props) => {
                                     autoComplete="p_apellido"
                                     isFocused={true}
                                     handleChange={onHandleChange}
+                                    errors={errors.p_apellido}
                                     required
                                 />
                             </div>
@@ -157,6 +158,7 @@ const Edit = (props) => {
                                     className="mt-1 block w-full"
                                     autoComplete="s_apellido"
                                     isFocused={true}
+                                    errors={errors.s_apellido}
                                     handleChange={onHandleChange}
                                     required
                                 />
